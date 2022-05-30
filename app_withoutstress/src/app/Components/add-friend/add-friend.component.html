@@ -1,1 +1,19 @@
-<p>add-friend works!</p>
+<div class="submit-form">
+    <div *ngIf="!submitted">
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" required [(ngModel)]="friend.username">
+    </div>
+    <div class="form-group">
+        <label for="hashcode">Hashcode</label>
+        <input type="number" class="form-control" id="hashcode" required [(ngModel)]="friend.hashcode">
+    </div>
+    <div class="form-group">
+        <label for="friend_username">Friend Username</label>
+        <input type="text" class="form-control" id="friend_username" required [(ngModel)]="friend.friend_username">
+    </div>
+    <button (click)="saveFriend()" class="btn btn-success">Agregar Amigo</button>
+</div>
+<div *ngIf="submitted">
+    <h4>Amigo Ya Registrado</h4>>
+</div>
