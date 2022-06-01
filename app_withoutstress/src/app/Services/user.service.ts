@@ -18,4 +18,12 @@ export class UserService{
   AddFriend(data:any): Observable<any>{
     return this.http.post(`${this.baseUrl}/addFriend`,data);
   }
+
+  SetPremium(value: any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/buyPremium`, value);
+  }
+
+  Register(data: any): Observable<User> {
+    return this.http.post(`${this.baseUrl}/regUser`, data);
+  }
 }

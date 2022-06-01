@@ -3,4 +3,5 @@ export class User {
     surname?: string;
     username?: string;   
     rank_id?: string;
+    premium?: boolean = false; // Must be non-premium by default (WIP)
 }
