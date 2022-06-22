@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { AddFriendComponent } from './Components/add-friend/add-friend.component';
 import { BuyWsPremiumComponent } from './Components/buy-ws-premium/buy-ws-premium.component';
 import { RegisterComponent } from './Components/register/register.component';
+import { HomeComponent } from './Components/home/home.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { RegisterComponent } from './Components/register/register.component';
     AddFriendComponent,
     BuyWsPremiumComponent,
     RegisterComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,

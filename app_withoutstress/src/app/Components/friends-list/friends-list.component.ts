@@ -11,10 +11,9 @@ import { ActivatedRoute } from '@angular/router';
 export class FriendsListComponent implements OnInit {
 
   friends?: User[];
-  name='';
-  surname='';
+  currentFriend: User = {};
+  CurrentIndex=-1;
   username='';
-  rank_id='';
   constructor(private userService: UserService,
     private route: ActivatedRoute) { }
 
@@ -22,6 +21,10 @@ export class FriendsListComponent implements OnInit {
     this.retrieveFriends(this.route.snapshot.params['username']);
   }
 
+  SetActiveFriend(friend:User, index: number):void{
+    this.currentFriend=friend;
+    this.CurrentIndex=index;
+  }
   retrieveFriends(username:string):void{
     this.userService.getFriendsByUsername(username).subscribe(
       {

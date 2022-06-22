@@ -1,10 +1,47 @@
-<div>
+<div id="app">
   <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <ul>
-      <li><a href="#" class="navbar-brand">Demo</a></li>
-      <li><a href="register" class="navbar-brand">Regístrate</a></li>
-      <li><a href="buy-ws-premium" class="navbar-brand">¡Actualízate a premium!</a></li>
+    <a href="#" class="navbar-brand">WithoutStress</a>
+
+    <ul class="navbar-nav mr-auto" routerLinkActive="active">
+      <li class="nav-item">
+        <a href="/home" class="nav-link" routerLink="home">Inicio</a>
+      </li>
     </ul>
+    <!--Test: SOLO si no hay nadie logeado-->
+    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+      <li class="nav-item">
+        <a href="/register" class="nav-link" routerLink="register">Regístrate</a>
+      </li>
+    </ul>
+
+    <!--Test: SOLO si no hay nadie logeado-->
+    <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+      <li class="nav-item">
+        <a href="/login" class="nav-link" routerLink="login">Inicia sesión</a>
+      </li>
+    </ul>
+
+    <!--Test: SOLO si el usuario ESTÁ logeado-->
+    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+      <li>
+        <a href="users/buyPremium" routerLink="users/:username/buyPremium">Hazte premium</a>
+      </li>
+    </ul>
+
+    <!--Test: SOLO si el usuario ESTÁ logeado-->
+    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+      <li class="nav-item">
+        <a href class="nav-link" (click)="logout()">Cerrar sesión</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+      Bienvenido, {{username}}!
+    </ul>
+
   </nav>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
 </div>
-<router-outlet></router-outlet>

@@ -1,3 +1,4 @@
+import { AuthService } from './../../Services/auth.service';
 import { User } from 'src/app/Models/user.model';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -10,23 +11,34 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  form: any = {
+    name: null,
+    surname: null,
+    username: null,
+  };
+  isSuccessful = false;
+  isSignUpFailed = false;
+  errorMessage = '';
+
   user!: User;
 
-  constructor(private userService: UserService, private route: ActivatedRoute) { }
+  constructor(private authService: AuthService) { }
 
-  ngOnInit(): void {
-    this.registerUser(this.route.snapshot.params['']);
-  }
+  ngOnInit(): void {}
 
-  registerUser(value: User): void {
-    this.userService.Register(value).subscribe(
-      {
-        next: (data) => {
-          this.user = data;
-        },
-        error: (e) => console.log(e)
+  onSubmit(): void {
+    const  { name, surname, username } = this.form;
+
+    this.authService.register(name, surname, username).subscribe({
+      next: (data) => {
+        this.isSuccessful = true;
+        this.isSignUpFailed = false;
+      },
+      error: (e) => {
+        this.errorMessage = e.error.message;
+        this.isSignUpFailed = true;
       }
-    );
+    });
   }
 }
 
